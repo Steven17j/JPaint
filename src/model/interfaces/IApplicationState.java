@@ -4,6 +4,7 @@ import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
 import model.MouseMode;
+import model.Shapes.ShapeOptions;
 
 public interface IApplicationState {
     void setActiveShape();
@@ -25,4 +26,6 @@ public interface IApplicationState {
     ShapeShadingType getActiveShapeShadingType();
 
     MouseMode getActiveMouseMode();
+
+    ShapeOptions getCurrentShapeOptions(ShapeOptions options);
 }

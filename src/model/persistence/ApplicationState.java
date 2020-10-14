@@ -4,6 +4,7 @@ import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
 import model.MouseMode;
+import model.Shapes.ShapeOptions;
 import model.dialogs.DialogProvider;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
@@ -73,6 +74,15 @@ public class ApplicationState implements IApplicationState {
     @Override
     public MouseMode getActiveMouseMode() {
         return activeMouseMode;
+    }
+
+    @Override
+    public ShapeOptions getCurrentShapeOptions(ShapeOptions options) {
+        options.shapeType = activeShapeType;
+        options.primaryColor = activePrimaryColor;
+        options.secondaryColor = activeSecondaryColor;
+        options.shapeShadingType = activeShapeShadingType;
+        return options;
     }
 
     private void setDefaults() {
