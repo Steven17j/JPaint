@@ -36,7 +36,7 @@ public class Triangle extends Polygon implements IShape {
         int b = Math.max(startPoint.y, endPoint.y);
 
         int[] xPoints = new int[]{x, ((x+a) / 2), a};
-        int[] yPoints = new int[]{b, a, b};
+        int[] yPoints = new int[]{b, y, b};
 
         Polygon triangle = new Polygon(xPoints, yPoints, 3);
         this.type = triangle;
@@ -95,6 +95,9 @@ public class Triangle extends Polygon implements IShape {
         this.secondaryColor = shape_option.secondaryColor;
         this.shadingType = shape_option.shapeShadingType;
     }
+
+    @Override
+    public String getShapeName() { return "Triangle"; }
 
     @Override
     public String toString() {

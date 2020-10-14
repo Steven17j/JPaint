@@ -3,6 +3,7 @@ package view.Listeners;
 import controller.DrawShapeCommand;
 
 import controller.ICommand;
+import model.MouseMode;
 import model.Shapes.ShapeList;
 import model.interfaces.IApplicationState;
 import view.interfaces.PaintCanvasBase;
@@ -17,9 +18,10 @@ public class MouseAdapter implements MouseListener {
     private ICommand command;
     private ShapeList shapes;
 
-    public MouseAdapter(PaintCanvasBase canvas, IApplicationState state) {
+    public MouseAdapter(PaintCanvasBase canvas, IApplicationState state, ShapeList shapes) {
         this.canvas = canvas;
         this.applicationState = state;
+        this.shapes = shapes;
     }
 
     @Override
@@ -30,7 +32,12 @@ public class MouseAdapter implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
        endPoint = e.getPoint();
-       command = new DrawShapeCommand(canvas.getGraphics2D(), applicationState, startPoint, endPoint);
+       if(applicationState.getActiveMouseMode() == MouseMode.DRAW) {
+
+           command = new DrawShapeCommand(canvas.getGraphics2D(), applicationState, startPoint, endPoint, shapes);
+       }
+
+
        command.execute();
 
     }

@@ -25,5 +25,7 @@ public interface IShape extends Shape {
 
     void setNewShapeOptions(ShapeOptions shape_option);
 
+    String getShapeName();
+
     String toString();
 }

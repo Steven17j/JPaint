@@ -88,6 +88,9 @@ public class Rectangle extends java.awt.Rectangle implements IShape {
     }
 
     @Override
+    public String getShapeName() { return "Rectangle"; }
+
+    @Override
     public String toString() {
         return "Rectangle {" +
                 "shapeType =" + shapeType +

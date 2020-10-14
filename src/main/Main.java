@@ -13,16 +13,15 @@ import view.interfaces.PaintCanvasBase;
 import view.interfaces.IUiModule;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         PaintCanvasBase paintCanvas = new PaintCanvas();
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);
         ShapeList shapes = new ShapeList();
-        MouseAdapter mouseListener = new MouseAdapter(paintCanvas, appState);
+        MouseAdapter mouseListener = new MouseAdapter(paintCanvas, appState, shapes);
         (paintCanvas).addMouseListener(mouseListener);
         IJPaintController controller = new JPaintController(uiModule, appState, shapes);
         controller.setup();
-
     }
 }

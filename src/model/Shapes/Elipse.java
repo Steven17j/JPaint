@@ -85,6 +85,9 @@ public class Elipse extends java.awt.Rectangle implements IShape {
     }
 
     @Override
+    public String getShapeName() { return "Ellipse"; }
+
+    @Override
     public String toString() {
 
         return "Elipse {" +
