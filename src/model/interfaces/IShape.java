@@ -27,5 +27,7 @@ public interface IShape extends Shape {
 
     String getShapeName();
 
+    IShape clone();
+
     String toString();
 }

@@ -3,12 +3,11 @@ package model.Shapes;
 import model.ColorDictionary;
 import model.ShapeColor;
 import model.ShapeShadingType;
-import model.ShapeType;
 import model.interfaces.IShape;
 
 import java.awt.*;
 
-public class Triangle extends Polygon implements IShape {
+public class Triangle extends Polygon implements IShape, Cloneable {
     private Graphics2D graphics;
     private Point startPoint;
     private Point endPoint;
@@ -98,6 +97,17 @@ public class Triangle extends Polygon implements IShape {
 
     @Override
     public String getShapeName() { return "Triangle"; }
+
+    @Override
+    public IShape clone() {
+        IShape clone;
+        try {
+            clone = (IShape) super.clone();
+        } catch (CloneNotSupportedException exp) {
+            throw new RuntimeException(exp);
+        }
+        return clone;
+    }
 
     @Override
     public String toString() {

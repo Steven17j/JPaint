@@ -3,6 +3,8 @@ package view.Listeners;
 import controller.DrawShapeCommand;
 
 import controller.ICommand;
+import controller.MoveShapeCommand;
+import controller.SelectShapeCommand;
 import model.MouseMode;
 import model.Shapes.ShapeList;
 import model.interfaces.IApplicationState;
@@ -33,13 +35,15 @@ public class MouseAdapter implements MouseListener {
     public void mouseReleased(MouseEvent e) {
        endPoint = e.getPoint();
        if(applicationState.getActiveMouseMode() == MouseMode.DRAW) {
-
            command = new DrawShapeCommand(canvas.getGraphics2D(), applicationState, startPoint, endPoint, shapes);
        }
-
-
+       if(applicationState.getActiveMouseMode() == MouseMode.SELECT) {
+           command = new SelectShapeCommand(shapes, startPoint, endPoint);
+       }
+       if(applicationState.getActiveMouseMode() == MouseMode.MOVE) {
+           command = new MoveShapeCommand(startPoint, endPoint, shapes);
+       }
        command.execute();
-
     }
 
     @Override

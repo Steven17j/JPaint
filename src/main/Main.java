@@ -19,6 +19,7 @@ public class Main {
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);
         ShapeList shapes = new ShapeList();
+        shapes.registerObserver((PaintCanvas) paintCanvas);
         MouseAdapter mouseListener = new MouseAdapter(paintCanvas, appState, shapes);
         (paintCanvas).addMouseListener(mouseListener);
         IJPaintController controller = new JPaintController(uiModule, appState, shapes);

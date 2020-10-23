@@ -91,6 +91,13 @@ public class Rectangle extends java.awt.Rectangle implements IShape {
     public String getShapeName() { return "Rectangle"; }
 
     @Override
+    public IShape clone() {
+        IShape clone;
+        clone = (IShape) super.clone();
+        return clone;
+    }
+
+    @Override
     public String toString() {
         return "Rectangle {" +
                 "shapeType =" + shapeType +
