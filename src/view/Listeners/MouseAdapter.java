@@ -8,19 +8,18 @@ import controller.SelectShapeCommand;
 import model.MouseMode;
 import model.Shapes.ShapeList;
 import model.interfaces.IApplicationState;
-import view.interfaces.PaintCanvasBase;
-import java.awt.*;
+import view.gui.PaintCanvas;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class MouseAdapter implements MouseListener {
     private java.awt.Point startPoint, endPoint;
     private IApplicationState applicationState;
-    private PaintCanvasBase canvas;
+    private PaintCanvas canvas;
     private ICommand command;
     private ShapeList shapes;
 
-    public MouseAdapter(PaintCanvasBase canvas, IApplicationState state, ShapeList shapes) {
+    public MouseAdapter(PaintCanvas canvas, IApplicationState state, ShapeList shapes) {
         this.canvas = canvas;
         this.applicationState = state;
         this.shapes = shapes;

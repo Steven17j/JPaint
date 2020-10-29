@@ -22,7 +22,7 @@ public class DeleteCommand implements ICommand, IUndoable {
     }
 
     private void delete() {
-        if(!shapes.isSelected()) {
+        if(shapes.isSelected()) {
             deleted = new ArrayList<>(shapes.getSelectedShapesList().size());
             Iterator<IShape> deletedIter = shapes.createSelectedShapeIter();
 
@@ -32,8 +32,10 @@ public class DeleteCommand implements ICommand, IUndoable {
 
             for(IShape delShape: deleted) {
                 Shape final_shape = delShape.getShapeParameters();
+                shapes.getCurrentShapeList().removeIf((IShape i) -> i.getShapeParameters().equals(final_shape));
                 shapes.getSelectedShapesList().removeIf((IShape i) -> i.getShapeParameters().equals(final_shape));
             }
+
             shapes.setSelected();
             shapes.notifyObservers();
         }

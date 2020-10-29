@@ -22,26 +22,17 @@ public class PasteCommand implements ICommand, IUndoable {
     @Override
     public void execute() {
         pasteShapes();
-
         CommandHistory.add(this);
-
     }
 
     private void pasteShapes() {
-        System.out.println("First step");
-        if(shapes.getCurrentShapeList().isEmpty() == false) {
-            System.out.println("Bing bang");
-        }
-        if (shapes.isCanCopy() == false) {
-            System.out.println("Gotcha bitch");
-        }
-        if(!shapes.getShapeClipBoard().isEmpty() && shapes.isCanCopy()) {
-            System.out.println("second step");
+
+        if(!shapes.getShapeClipBoard().isEmpty() && !shapes.isCanCopy()) {
+
             clip_board = new ArrayList<>(shapes.getShapeClipBoard().size());
             Iterator<IShape> clipIter = shapes.createClipBoardIter();
 
             while(clipIter.hasNext()) {
-                System.out.println("third step");
                 clip_board.add(clipIter.next().clone());
             }
             Random randNum = new Random();
@@ -50,7 +41,6 @@ public class PasteCommand implements ICommand, IUndoable {
 
             for(IShape shape: clip_board) {
                 shapes.getCurrentShapeList().add(shape);
-                System.out.println("You pasted");
                 Point startPoint = new Point((int)(shape.getStartPoint().getX() + delta_x), (int)(shape.getStartPoint().getY() + delta_y));
                 Point endPoint = new Point(shape.getShapeWidth() + (int) startPoint.getX(), shape.getShapeHeight() + (int) startPoint.getY() );
                 shape.setStartAndEndPoint(startPoint,endPoint);

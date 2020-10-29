@@ -2,6 +2,7 @@ package view.interfaces;
 
 import model.interfaces.IShape;
 
+
 import java.util.ArrayList;
 
 public interface IShapeObserver {

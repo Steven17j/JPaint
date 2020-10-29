@@ -42,7 +42,7 @@ public class ShapeList extends Rectangle implements IShapeList, IShapeSubject {
 
         for(IShape shape: shapes) {
             Shape temp = shape.getShapeParameters();
-            if (rectangle.getBounds().intersects(temp.getBounds()) || temp.contains(x, y)){
+            if (rectangle.getBounds().intersects(temp.getBounds()) || temp.contains(x, y)) {
                 selectedShapesList.add(shape);
             }
         }
@@ -90,7 +90,5 @@ public class ShapeList extends Rectangle implements IShapeList, IShapeSubject {
     }
 
     @Override
-    public void notifyObservers() {
-        paintCanvas.update(currentShapeList, selectedShapesList);
-    }
+    public void notifyObservers() { paintCanvas.update(currentShapeList, selectedShapesList); }
 }

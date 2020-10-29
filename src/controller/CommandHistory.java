@@ -12,7 +12,6 @@ public class CommandHistory {
     }
 
     public static boolean undo() {
-        System.out.println("You reached this point");
         boolean result = !undoStack.empty();
         if (result) {
             IUndoable c = undoStack.pop();

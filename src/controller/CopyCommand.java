@@ -13,7 +13,7 @@ public class CopyCommand implements  ICommand, IUndoable{
     @Override
     public void execute() {
         copy();
-        System.out.println("You copied");
+        System.out.println("You copied a shape");
         CommandHistory.add(this);
     }
 

@@ -27,6 +27,7 @@ public class JPaintController implements IJPaintController {
         ICommand copy = new CopyCommand(shapes);
         ICommand paste = new PasteCommand(shapes);
         ICommand delete = new DeleteCommand(shapes);
+
         uiModule.addEvent(EventName.CHOOSE_SHAPE, () -> applicationState.setActiveShape());
         uiModule.addEvent(EventName.CHOOSE_PRIMARY_COLOR, () -> applicationState.setActivePrimaryColor());
         uiModule.addEvent(EventName.CHOOSE_SECONDARY_COLOR, () -> applicationState.setActiveSecondaryColor());
