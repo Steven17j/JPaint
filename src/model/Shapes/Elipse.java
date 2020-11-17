@@ -50,6 +50,21 @@ public class Elipse extends java.awt.Rectangle implements IShape {
     }
 
     @Override
+    public void drawOutline(Color color) {
+        int x1 = (int) Math.min(startPoint.getX(), endPoint.getX());
+        int y1 = (int) Math.min(startPoint.getY(), endPoint.getY());
+        int height1 = getShapeHeight() + 10;
+        int width1 = getShapeWidth() + 10;
+        java.awt.Rectangle outline = new java.awt.Rectangle(x1-5, y1-5, width1, height1);
+        graphics.setColor(color);
+        graphics.setStroke(new BasicStroke(
+                4.0f, BasicStroke.CAP_SQUARE,
+                BasicStroke.JOIN_MITER, 10.0f,
+                new float[] {16.0f, 20.0f}, 0.0f));
+        graphics.drawOval(outline.x, outline.y, outline.width, outline.height);
+    }
+
+    @Override
     public Shape getShapeParameters() { return type; }
 
     @Override

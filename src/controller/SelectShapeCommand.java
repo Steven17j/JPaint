@@ -26,6 +26,23 @@ public class SelectShapeCommand implements ICommand, IUndoable {
     }
 
     private void selector() {
+        int x = Math.min(startPoint.x, endPoint.x);
+        int y = Math.min(startPoint.y, endPoint.y);
+        int height = Math.abs(startPoint.y - endPoint.y);
+        int width = Math.abs(startPoint.x - endPoint.x);
+        Rectangle rectangle = new Rectangle(x, y, width, height);
+        int count = 0;
+
+        for(IShape shape: shapeList.getCurrentShapeList()) {
+            Shape temp = shape.getShapeParameters();
+            if (rectangle.getBounds().intersects(temp.getBounds()) || temp.contains(x, y)) { count += 1; }
+        }
+
+        if(count == 0) {
+            shapeList.deselectShapes();
+            setUndoSelectShapes();
+        }
+
         if(shapeList.isSelected()) {
             shapeList.addShapes(shapeList.getCurrentShapeList(), startPoint, endPoint);
             setUndoSelectShapes();
@@ -33,6 +50,7 @@ public class SelectShapeCommand implements ICommand, IUndoable {
             setUndoSelectShapes();
             shapeList.deselectShapes();
         }
+
     }
 
     private void setUndoSelectShapes() {

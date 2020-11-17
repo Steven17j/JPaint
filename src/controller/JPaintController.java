@@ -5,15 +5,19 @@ import model.interfaces.IApplicationState;
 import view.EventName;
 import view.interfaces.IUiModule;
 
+import java.awt.*;
+
 public class JPaintController implements IJPaintController {
     private final IUiModule uiModule;
     private final IApplicationState applicationState;
     private final ShapeList shapes;
+    private final Graphics2D graphics;
 
-    public JPaintController(IUiModule uiModule, IApplicationState applicationState, ShapeList shapes) {
+    public JPaintController(Graphics2D graphics, IUiModule uiModule, IApplicationState applicationState, ShapeList shapes) {
         this.uiModule = uiModule;
         this.applicationState = applicationState;
         this.shapes = shapes;
+        this.graphics = graphics;
     }
 
     @Override
@@ -27,6 +31,8 @@ public class JPaintController implements IJPaintController {
         ICommand copy = new CopyCommand(shapes);
         ICommand paste = new PasteCommand(shapes);
         ICommand delete = new DeleteCommand(shapes);
+        ICommand group = new GroupCommand(shapes, graphics);
+
 
         uiModule.addEvent(EventName.CHOOSE_SHAPE, () -> applicationState.setActiveShape());
         uiModule.addEvent(EventName.CHOOSE_PRIMARY_COLOR, () -> applicationState.setActivePrimaryColor());
@@ -39,6 +45,7 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.COPY, () -> copy.execute());
         uiModule.addEvent(EventName.PASTE, () -> paste.execute());
         uiModule.addEvent(EventName.DELETE, () -> delete.execute());
+        uiModule.addEvent(EventName.GROUP, () -> group.execute());
 
     }
 }

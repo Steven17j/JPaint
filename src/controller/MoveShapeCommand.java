@@ -33,6 +33,7 @@ public class MoveShapeCommand implements ICommand, IUndoable {
         delta_x = (int) (endPoint.getX() - startPoint.getX());
         delta_y = (int) (endPoint.getY() - startPoint.getY());
         selectedShapesIter = shapes.createSelectedShapeIter();
+
         move(selectedShapesIter);
     }
 
@@ -44,7 +45,6 @@ public class MoveShapeCommand implements ICommand, IUndoable {
             move();
             CommandHistory.add(this);
         }
-
     }
 
     @Override

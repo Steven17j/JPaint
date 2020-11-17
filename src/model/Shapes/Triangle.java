@@ -53,6 +53,25 @@ public class Triangle extends Polygon implements IShape, Cloneable {
     }
 
     @Override
+    public void drawOutline(Color color) {
+        int x1 = Math.min(startPoint.x, endPoint.x);
+        int y1 = Math.min(startPoint.y, endPoint.y);
+        int a1 = Math.max(startPoint.x, endPoint.x);
+        int b1 = Math.max(startPoint.y, endPoint.y);
+
+        int[] xPoints = new int[]{x1-10, ((x1+a1) / 2), a1+10};
+        int[] yPoints = new int[]{b1+10, y1-20, b1+10};
+
+        Polygon outline = new Polygon(xPoints, yPoints, 3);
+        graphics.setColor(color);
+        graphics.setStroke(new BasicStroke(
+                4.0f, BasicStroke.CAP_SQUARE,
+                BasicStroke.JOIN_MITER, 10.0f,
+                new float[] {16.0f, 20.0f}, 0.0f));
+        graphics.drawPolygon(outline.xpoints, outline.ypoints, outline.npoints);
+    }
+
+    @Override
     public Shape getShapeParameters() {
         return type;
     }

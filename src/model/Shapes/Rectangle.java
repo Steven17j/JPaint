@@ -18,9 +18,7 @@ public class Rectangle extends java.awt.Rectangle implements IShape {
     private ShapeShadingType shapeShadingType;
     private Graphics2D graphics;
 
-
     public Rectangle(Graphics2D graphics, ShapeOptions shape_options, Point start, Point end) {
-
         this.startPoint = start;
         this.endPoint = end;
         this.shapeShadingType = shape_options.shapeShadingType;
@@ -44,11 +42,28 @@ public class Rectangle extends java.awt.Rectangle implements IShape {
         if(shapeShadingType == shapeShadingType.FILLED_IN || shapeShadingType == shapeShadingType.OUTLINE_AND_FILLED_IN) {
             graphics.fillRect(rectangle.x,rectangle.y, width, height);
         }
+
         graphics.setStroke(new BasicStroke((5)));
         graphics.setColor(secondary.getColor());
         if (shapeShadingType == ShapeShadingType.OUTLINE || shapeShadingType == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
             graphics.drawRect(rectangle.x, rectangle.y, width, height);
         }
+    }
+
+    @Override
+    public void drawOutline(Color color) {
+        int x2 = (int) Math.min(startPoint.getX(), endPoint.getX());
+        int y2 = (int) Math.min(startPoint.getY(), endPoint.getY());
+        int height2 = getShapeHeight() + 10;
+        int width2 = getShapeWidth() + 10;
+        java.awt.Rectangle outline = new java.awt.Rectangle(x2-5, y2-5, width2, height2);
+        graphics.setColor(color);
+        graphics.setStroke(new BasicStroke(
+                4.0f, BasicStroke.CAP_SQUARE,
+                BasicStroke.JOIN_MITER, 10.0f,
+                new float[] {16.0f, 20.0f}, 0.0f));
+        graphics.drawRect(outline.x, outline.y, width2, height2);
+
     }
 
     @Override

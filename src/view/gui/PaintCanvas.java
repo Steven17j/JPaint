@@ -16,13 +16,19 @@ public class PaintCanvas extends JComponent implements IShapeObserver {
     @Override
     public void update(ArrayList<IShape> shapes, ArrayList<IShape> moreShapes) {
 
+        //Clear the canvas
         Graphics2D graphics = getGraphics2D();
-        graphics.clearRect(0,0,1500, 800);
+        graphics.clearRect(0,0,1600, 800);
         graphics.setColor(Color.WHITE);
-        graphics.fillRect(0,0, 1500, 800);
+        graphics.fillRect(0,0, 1600, 800);
 
+        //non selected shapes on canvas are drawn
         for(IShape shape: shapes) { shape.draw(); }
 
-        for(IShape shape: moreShapes) { shape.draw(); }
+        //shapes that are selected are drawn with outline
+        for(IShape shape: moreShapes) {
+            shape.draw();
+            shape.drawOutline(Color.BLACK);
+        }
     }
 }

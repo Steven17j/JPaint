@@ -1,7 +1,5 @@
 package model;
-
 import java.awt.*;
-import model.ShapeColor;
 
 public class ColorDictionary {
     ShapeColor shapeColor;

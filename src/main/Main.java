@@ -21,7 +21,7 @@ public class Main {
         shapes.registerObserver(paintCanvas);
         MouseAdapter mouseListener = new MouseAdapter(paintCanvas, appState, shapes);
         (paintCanvas).addMouseListener(mouseListener);
-        IJPaintController controller = new JPaintController(uiModule, appState, shapes);
+        IJPaintController controller = new JPaintController(paintCanvas.getGraphics2D(),uiModule, appState, shapes);
         controller.setup();
     }
 }

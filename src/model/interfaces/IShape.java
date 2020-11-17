@@ -9,6 +9,8 @@ public interface IShape extends Shape {
 
     void draw();
 
+    void drawOutline(Color color);
+
     Shape getShapeParameters();
 
     Point getStartPoint();
